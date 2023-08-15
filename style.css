@@ -7,7 +7,7 @@
   --text-shadow: -1px 0 1px black, 0 1px 1px black, 1px 0 1px black, 0 -1px 1px black;
   --default-text-color: white;
   --primary-bg-color: rgb(24, 26, 27);
-  --secondary-bg-color: rgb(40, 43, 44);
+  --secondary-bg-color: rgb(104, 104, 104);
   --tertiary-bg-color: rgb(39, 59, 122);
 }
 
@@ -18,19 +18,27 @@
 }
 
 body {
+  min-height: 100vh;
   font-family: var(--system-ui);
   line-height: 1.5;
   font-weight: bold;
   color: var(--default-text-color);
-  background-color: rgb(31, 31, 31);
-  width: 100vw;
-  grid-template: 1fr 
+  background-color: var(--primary-bg-color);
+  grid-template-rows: 1fr 40px
 }
 
 body,
 .game-container,
-.columns-2 {
+.columns-2,
+footer,
+main,
+.score-container {
   display: grid;
+}
+
+.columns-2,
+.footer {
+  gap: var(--half-sizing);
 }
 
 .columns-2 {
@@ -41,15 +49,19 @@ body,
   cursor: pointer;
 }
 
+footer {
+  justify-items: center;
+}
+
 .footer {
   font-size: 1rem;
   text-shadow: var(--text-shadow);
-  align-items: start;
   color: var(--default-text-color);
   text-decoration: none;
   width: auto;
   height: 100%;
 }
+
 footer img {
   aspect-ratio: 1/1;
   width: 1.5rem;
@@ -58,6 +70,72 @@ footer img {
 
 .game-container {
   aspect-ratio: 1;
-  width: 30%;
-  grid-template: auto auto auto / auto auto auto;
+  width: 100%;
+  grid-template: repeat(3, auto) / repeat(3, auto);
+}
+
+div[data-grid-pos] {
+  cursor: pointer;
+}
+
+div[data-grid-pos]:nth-child(3n - 1) {
+  border-left: 4px solid var(--secondary-bg-color);
+  border-right: 4px solid var(--secondary-bg-color);
+}
+
+div[data-grid-pos]:nth-child(4),
+div[data-grid-pos]:nth-child(5),
+div[data-grid-pos]:nth-child(6) {
+  border-top: 4px solid var(--secondary-bg-color);
+  border-bottom: 4px solid var(--secondary-bg-color);
+}
+
+input[type="text"] {
+  color: var(--default-text-color);
+  font-family: inherit;
+  font-size: var(--sizing);
+  padding: 0 0 5px 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: var(--primary-bg-color);
+  border: none;
+  border-bottom: 2px solid var(--secondary-bg-color);
+  text-align: center;
+}
+
+main {
+  justify-content: center;
+  align-content: center;
+  row-gap: var(--large-sizing);
+  justify-items: center;
+}
+
+main header h1 {
+  font-size: var(--large-sizing);
+  margin-bottom: var(--large-sizing)
+}
+
+.score-container {
+  grid-template: 1fr 1fr / 1fr 1fr 1fr;
+  justify-self: stretch;
+  justify-items: center;
+  align-items: center;
+  font-size: var(--sizing);
+}
+
+#player-1-score,
+#draw-score,
+#player-2-score {
+  font-size: var(--large-sizing);
+}
+
+#player-2::after {
+  content: "⭕";
+  align-self: end;
+}
+
+#player-1::after {
+  content: "❌";
+  align-self: end;
+
 }

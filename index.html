@@ -8,10 +8,10 @@
   <script src="script.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Tic Tac Toe</h1>
-  </header>
   <main>
+    <header>
+      <h1>Tic Tac Toe</h1>
+    </header>
     <div class="game-container">
       <div data-grid-pos="1" class=""></div>
       <div data-grid-pos="2" class=""></div>
@@ -23,13 +23,21 @@
       <div data-grid-pos="8" class=""></div>
       <div data-grid-pos="9" class=""></div>
     </div>
-    <div>
-      <input type="text" placeholder="Player 1">
-      <input type="text" placeholder="Player 2">
+    <div class="score-container">
+      <div>
+        <span id="player-1"></span><input type="text" placeholder="Player 1">
+      </div>
+      <span>DRAW</span>
+      <div>
+        <input type="text" placeholder="Player 2"><span id="player-2"></span>
+      </div>
+      <span id="player-1-score">0</span>
+      <span id="draw-score">0</span>
+      <span id="player-2-score">0</span>
     </div>
   </main>
   <footer>
-    <a class="columns-2 footer" href="https://github.com/mohamedabdulle/admin-dashboard" target="_blank"><img
+    <a class="columns-2 footer" href="https://github.com/mohamedabdulle/tic-tac-toe" target="_blank"><img
       src="img/github.gif" alt="GitHub Link">Mohamed Abdulle © 2023</a>
   </footer>
 </body>

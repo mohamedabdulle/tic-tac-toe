@@ -1,0 +1,63 @@
+:root {
+  --system-ui: 'Open Sans', system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  --large-sizing: 4rem;
+  --sizing: 1.6rem;
+  --half-sizing: 0.8rem;
+  --text-shadow: -1px 0 1px black, 0 1px 1px black, 1px 0 1px black, 0 -1px 1px black;
+  --default-text-color: white;
+  --primary-bg-color: rgb(24, 26, 27);
+  --secondary-bg-color: rgb(40, 43, 44);
+  --tertiary-bg-color: rgb(39, 59, 122);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--system-ui);
+  line-height: 1.5;
+  font-weight: bold;
+  color: var(--default-text-color);
+  background-color: rgb(31, 31, 31);
+  width: 100vw;
+  grid-template: 1fr 
+}
+
+body,
+.game-container,
+.columns-2 {
+  display: grid;
+}
+
+.columns-2 {
+  gap: var(--half-sizing);
+  grid-template-columns: auto auto;
+  justify-content: start;
+  align-items: center;
+  cursor: pointer;
+}
+
+.footer {
+  font-size: 1rem;
+  text-shadow: var(--text-shadow);
+  align-items: start;
+  color: var(--default-text-color);
+  text-decoration: none;
+  width: auto;
+  height: 100%;
+}
+footer img {
+  aspect-ratio: 1/1;
+  width: 1.5rem;
+  border-radius: 0.3rem;
+}
+
+.game-container {
+  aspect-ratio: 1;
+  width: 30%;
+  grid-template: auto auto auto / auto auto auto;
+}

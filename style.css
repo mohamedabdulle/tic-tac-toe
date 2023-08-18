@@ -1,20 +1,38 @@
 :root {
   --system-ui: 'Open Sans', system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: clamp(0.8rem, 1vw, 1rem);
-  --large-sizing: 4rem;
-  --sizing: 1.6rem;
-  --half-sizing: 0.8rem;
+  font-size: clamp(0.4rem, 1vw, 0.8rem);
+  --x-large-sizing: 6rem;
+  --large-sizing: 3rem;
+  --sizing: 1.5rem;
+  --half-sizing: 1rem;
   --text-shadow: -1px 0 1px black, 0 1px 1px black, 1px 0 1px black, 0 -1px 1px black;
   --default-text-color: white;
   --primary-bg-color: rgb(24, 26, 27);
   --secondary-bg-color: rgb(104, 104, 104);
   --tertiary-bg-color: rgb(39, 59, 122);
+  --footer-height: calc(40px + var(--large-sizing));
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+body,
+.grid-container,
+.columns-2,
+.game-container,
+.score-container,
+.game-container header h1  {
+  display: grid;
+}
+
+.columns-2 {
+  gap: var(--half-sizing);
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: center;
 }
 
 body {
@@ -24,68 +42,39 @@ body {
   font-weight: bold;
   color: var(--default-text-color);
   background-color: var(--primary-bg-color);
-  grid-template-rows: 1fr 40px
-}
-
-body,
-.game-container,
-.columns-2,
-footer,
-main,
-.score-container {
-  display: grid;
-}
-
-.columns-2,
-.footer {
-  gap: var(--half-sizing);
-}
-
-.columns-2 {
-  gap: var(--half-sizing);
-  grid-template-columns: auto auto;
-  justify-content: start;
-  align-items: center;
-  cursor: pointer;
-}
-
-footer {
+  grid-template: 1fr var(--footer-height) / 1fr;
   justify-items: center;
-}
-
-.footer {
-  font-size: 1rem;
-  text-shadow: var(--text-shadow);
-  color: var(--default-text-color);
-  text-decoration: none;
-  width: auto;
-  height: 100%;
-}
-
-footer img {
-  aspect-ratio: 1/1;
-  width: 1.5rem;
-  border-radius: 0.3rem;
+  align-items: center;
 }
 
 .game-container {
-  aspect-ratio: 1;
-  width: 100%;
-  grid-template: repeat(3, auto) / repeat(3, auto);
+  row-gap: var(--x-large-sizing);
+  margin-top: var(--large-sizing);
+  justify-items: center;
 }
 
-div[data-grid-pos] {
+.game-container header h1 {
+  font-size: var(--x-large-sizing);
+  justify-items: center;
+}
+
+.grid-container {
+  aspect-ratio: 1;
+  grid-template: repeat(3, calc(20rem)) / repeat(3, calc(20rem));
+}
+
+div[data-grid] {
   cursor: pointer;
 }
 
-div[data-grid-pos]:nth-child(3n - 1) {
+div[data-grid]:nth-child(3n - 1) {
   border-left: 4px solid var(--secondary-bg-color);
   border-right: 4px solid var(--secondary-bg-color);
 }
 
-div[data-grid-pos]:nth-child(4),
-div[data-grid-pos]:nth-child(5),
-div[data-grid-pos]:nth-child(6) {
+div[data-grid]:nth-child(4),
+div[data-grid]:nth-child(5),
+div[data-grid]:nth-child(6) {
   border-top: 4px solid var(--secondary-bg-color);
   border-bottom: 4px solid var(--secondary-bg-color);
 }
@@ -93,7 +82,7 @@ div[data-grid-pos]:nth-child(6) {
 input[type="text"] {
   color: var(--default-text-color);
   font-family: inherit;
-  font-size: var(--sizing);
+  font-size: inherit;
   padding: 0 0 5px 0;
   margin: 0;
   box-sizing: border-box;
@@ -103,39 +92,66 @@ input[type="text"] {
   text-align: center;
 }
 
-main {
-  justify-content: center;
-  align-content: center;
-  row-gap: var(--large-sizing);
-  justify-items: center;
-}
-
-main header h1 {
-  font-size: var(--large-sizing);
-  margin-bottom: var(--large-sizing)
-}
-
 .score-container {
-  grid-template: 1fr 1fr / 1fr 1fr 1fr;
-  justify-self: stretch;
-  justify-items: center;
   align-items: center;
   font-size: var(--sizing);
+  gap: var(--x-large-sizing);
 }
 
-#player-1-score,
+.player-column,
+#draw,
+.player-row,
+.score-container {
+  display: flex;
+}
+
+.player-column,
+#draw {
+  flex-direction: column;
+  align-items: center;
+}
+
+.player-row {
+  gap: var(--sizing);
+  justify-content: center;
+  align-items: start;
+}
+
+#player-2-mark,
+#player-1-mark {
+  width: var(--x-large-sizing);
+  aspect-ratio: 1;
+}
+
+.cross-mark {
+  background: no-repeat center/80% url("img/cross.png");
+}
+
+.circle-mark {
+  background: no-repeat center/80% url("img/circle.png");
+}
+
+#player-2-score,
 #draw-score,
-#player-2-score {
+#player-1-score {
   font-size: var(--large-sizing);
 }
 
-#player-2::after {
-  content: "⭕";
-  align-self: end;
+footer {
+  margin-top: var(--large-sizing);
+  margin-bottom: var(--sizing);
 }
 
-#player-1::after {
-  content: "❌";
-  align-self: end;
+.footer {
+  font-size: 1rem;
+  text-shadow: var(--text-shadow);
+  color: var(--default-text-color);
+  text-decoration: none;
+  gap: var(--half-sizing);
+}
 
+footer img {
+  aspect-ratio: 1/1;
+  width: 1.5rem;
+  border-radius: 0.3rem;
 }

@@ -1,6 +1,6 @@
 :root {
   --system-ui: 'Open Sans', system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: clamp(0.4rem, 1vw, 0.8rem);
+  font-size: clamp(0.25rem, 1.2vw, 0.8rem);
   --x-large-sizing: 6rem;
   --large-sizing: 3rem;
   --sizing: 1.5rem;
@@ -9,8 +9,6 @@
   --default-text-color: white;
   --primary-bg-color: rgb(24, 26, 27);
   --secondary-bg-color: rgb(104, 104, 104);
-  --tertiary-bg-color: rgb(39, 59, 122);
-  --footer-height: calc(40px + var(--large-sizing));
 }
 
 * {
@@ -42,15 +40,15 @@ body {
   font-weight: bold;
   color: var(--default-text-color);
   background-color: var(--primary-bg-color);
-  grid-template: 1fr var(--footer-height) / 1fr;
+  grid-template: 1fr var(--x-large-sizing) / 1fr;
   justify-items: center;
   align-items: center;
 }
 
 .game-container {
   row-gap: var(--x-large-sizing);
-  margin-top: var(--large-sizing);
   justify-items: center;
+  margin: var(--large-sizing)
 }
 
 .game-container header h1 {
@@ -60,7 +58,7 @@ body {
 
 .grid-container {
   aspect-ratio: 1;
-  grid-template: repeat(3, calc(20rem)) / repeat(3, calc(20rem));
+  grid-template: repeat(3, calc(18rem)) / repeat(3, calc(18rem));
 }
 
 div[data-grid] {
@@ -135,11 +133,6 @@ input[type="text"] {
 #draw-score,
 #player-1-score {
   font-size: var(--large-sizing);
-}
-
-footer {
-  margin-top: var(--large-sizing);
-  margin-bottom: var(--sizing);
 }
 
 .footer {

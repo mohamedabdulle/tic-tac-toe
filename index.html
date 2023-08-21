@@ -6,16 +6,13 @@
   <title>Tic Tac Toe</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 </head>
 <body>
   <main class="game-container">
       <header>
         <h1>Tic Tac Toe</h1>
       </header>
-      <div>
-        <div>RESET</div>
-        <button id="reset-board">Board</button><button id="reset-score">Score</button>
-      </div>
       <div class="grid-container">
         <div data-grid="1" class=""></div>
         <div data-grid="2" class=""></div>
@@ -46,6 +43,9 @@
           </div>
           <div id="player-2-mark" class="circle-mark"></div>
         </div>
+      </div>
+      <div id="reset">
+        <button id="reset-board">Board</button>RESET<button id="reset-score">Score</button>
       </div>
   </main>
   <footer>

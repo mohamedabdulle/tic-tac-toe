@@ -9,6 +9,7 @@
   --default-text-color: white;
   --primary-bg-color: rgb(24, 26, 27);
   --secondary-bg-color: rgb(104, 104, 104);
+  --general-transform-scale: 1.1;
 }
 
 * {
@@ -22,15 +23,31 @@ body,
 .columns-2,
 .game-container,
 .score-container,
-.game-container header h1  {
+.game-container header h1,
+#reset  {
   display: grid;
+}
+
+body,
+.game-container,
+.game-container header h1,
+#reset {
+  justify-items: center;
+}
+
+.columns-2,
+body,
+#reset,
+.score-container,
+.player-column,
+#draw {
+  align-items: center;
 }
 
 .columns-2 {
   gap: var(--half-sizing);
   grid-template-columns: auto auto;
   justify-content: center;
-  align-items: center;
 }
 
 body {
@@ -41,24 +58,48 @@ body {
   color: var(--default-text-color);
   background-color: var(--primary-bg-color);
   grid-template: 1fr var(--x-large-sizing) / 1fr;
-  justify-items: center;
-  align-items: center;
 }
 
 .game-container {
   row-gap: var(--x-large-sizing);
-  justify-items: center;
   margin: var(--large-sizing)
 }
 
 .game-container header h1 {
   font-size: var(--x-large-sizing);
-  justify-items: center;
+}
+
+#reset {
+  grid-auto-flow: column;
+  gap: var(--large-sizing);
+  font-size: var(--sizing);
+}
+
+#reset button {
+  background-color: var(--secondary-bg-color);
+  color: var(--default-text-color);
+  font-family: inherit;
+  font-size: inherit;
+  width: 8rem;
+  padding: 0.75rem var(--half-sizing);
+  border: none;
+  border-radius: 1rem;
+  line-height: 1;
+  border: 2px solid var(--primary-bg-color);
+}
+
+#reset button:hover {
+  transition: transform 0.3s;
+  transform: scale(var(--general-transform-scale));
+  background-color: rgb(44, 44, 44);
+}
+
+#reset button:active {
+  transform: translateY(4px);
 }
 
 .grid-container {
-  aspect-ratio: 1;
-  grid-template: repeat(3, calc(18rem)) / repeat(3, calc(18rem));
+  grid-template: repeat(3, calc(15rem)) / repeat(3, calc(15rem));
 }
 
 div[data-grid] {
@@ -80,18 +121,17 @@ div[data-grid]:nth-child(6) {
 input[type="text"] {
   color: var(--default-text-color);
   font-family: inherit;
-  font-size: inherit;
+  font-size: var(--sizing);
   padding: 0 0 5px 0;
   margin: 0;
-  box-sizing: border-box;
   background-color: var(--primary-bg-color);
   border: none;
   border-bottom: 2px solid var(--secondary-bg-color);
   text-align: center;
+  width: 13rem;
 }
 
 .score-container {
-  align-items: center;
   font-size: var(--sizing);
   gap: var(--x-large-sizing);
 }
@@ -106,7 +146,11 @@ input[type="text"] {
 .player-column,
 #draw {
   flex-direction: column;
-  align-items: center;
+}
+
+#draw {
+  justify-content: space-between;
+  height: 100%;
 }
 
 .player-row {
@@ -137,14 +181,26 @@ input[type="text"] {
 
 .footer {
   font-size: 1rem;
-  text-shadow: var(--text-shadow);
   color: var(--default-text-color);
   text-decoration: none;
   gap: var(--half-sizing);
 }
 
 footer img {
-  aspect-ratio: 1/1;
+  aspect-ratio: 1;
   width: 1.5rem;
   border-radius: 0.3rem;
+}
+
+.winning-grid {
+  background-color: var(--secondary-bg-color);
+  border-color: 4px solid var(--primary-bg-color);
+}
+
+.player-1-color {
+  color: rgb(255, 40, 38)
+}
+
+.player-2-color {
+  color: rgb(29, 155, 229);
 }
